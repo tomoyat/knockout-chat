@@ -2,7 +2,7 @@ extends layout
 
 block content
   label 名前を入れてください : 
-    input(type="text" data-bind="value: userName")
+    input(type="text" data-bind="value: userName, disable: hasUserName")
 
   ul.comment-list(data-bind="foreach: comments")
     li

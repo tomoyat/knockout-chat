@@ -13,16 +13,16 @@ function chatViewModel() {
   self.comments = ko.observableArray();
   self.userName = ko.observable("");
   self.newComment = ko.observable("");
-
+  self.hasUserName = ko.observable(false);
 
   self.addComment = function() {
     if (self.newComment() === "" || self.userName() === "") { return; }
     socket.emit("msg", {
       text : self.newComment(),
       name : self.userName()
-    }, function() {
-      self.newComment("");
     });
+    self.hasUserName(true);
+    self.newComment("");
   };
   socket.on("msg", function(data) {
     self.comments.push(new comment(data.text, data.name));
