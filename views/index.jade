@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  label 名前を入れてください : 
+    input(type="text" data-bind="value: userName")
+
+  ul.comment-list(data-bind="foreach: comments")
+    li
+      span.text(data-bind="text: text")
+      span.name(data-bind="text: name")
+
+  input(type="text" data-bind="value: newComment")
+  button.btn(data-bind="click: addComment") 投稿
+  script(src="/javascripts/chat.js")
